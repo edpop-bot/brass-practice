@@ -260,8 +260,8 @@ function renderQuestion() {
     }
     app.innerHTML = `
         <h2 class="center">${instruments[state.instrument].name} (${levels[state.level].label})</h2>
-        <div class="center">
-            <img src="${imgSrc}" alt="${noteObj.note}" class="note-img" onerror="this.style.display='none'">
+        <div class="center" style="min-height:190px;">
+            <img src="${imgSrc}" alt="${noteObj.note}" class="note-img" width="240" height="190" style="width:240px;height:190px;object-fit:contain;" onerror="this.style.display='none'">
         </div>
         <div class="center" style="min-height:2em;">
             ${answerHtml}
