@@ -1,3 +1,14 @@
+// 画像プリロード
+function preloadImages() {
+    const images = [];
+    Object.keys(instruments).forEach(inst => {
+        instruments[inst].notes.forEach(n => {
+            const img = new Image();
+            img.src = `assets/${inst}_${getNoteFileName(n.note)}.png`;
+            images.push(img);
+        });
+    });
+}
 // オクターブ選択のON/OFF
 function toggleOctave(oct) {
     const o = Number(oct);
@@ -260,8 +271,8 @@ function renderQuestion() {
     }
     app.innerHTML = `
         <h2 class="center">${instruments[state.instrument].name} (${levels[state.level].label})</h2>
-        <div class="center" style="min-height:190px;">
-            <img src="${imgSrc}" alt="${noteObj.note}" class="note-img" width="240" height="190" style="width:240px;height:190px;object-fit:contain;" onerror="this.style.display='none'">
+        <div class="center">
+            <img src="${imgSrc}" alt="${noteObj.note}" class="note-img" onerror="this.style.display='none'">
         </div>
         <div class="center" style="min-height:2em;">
             ${answerHtml}
@@ -292,4 +303,7 @@ window.selectLevel = selectLevel;
 window.nextQuestion = nextQuestion;
 window.endSession = endSession;
 // 初期表示
-window.onload = renderMenu;
+window.onload = function() {
+    preloadImages();
+    renderMenu();
+};
