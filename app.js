@@ -40,7 +40,7 @@ function renderFingering(fingering, instrument) {
     }
     for (let i = 1; i <= maxNum; i++) {
         if (pressed.includes(i.toString())) {
-            html += `<span style=\"font-size:2em;margin:0 2px;\">${black[i-1]}</span>`;
+            html += `<span style=\"font-size:2.4em;font-weight:bold;margin:0 2px;\">${black[i-1]}</span>`;
         } else {
             html += `<span style=\"font-size:2em;margin:0 2px;\">${white[i-1]}</span>`;
         }
