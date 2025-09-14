@@ -39,6 +39,12 @@ body {
 .center {
     text-align: center;
 }
+
+h2.center {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
 .note-img {
     max-width: 90%;
     height: auto;

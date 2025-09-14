@@ -265,8 +265,10 @@ function renderQuestion() {
     if (state.showAnswer) {
         answerHtml = `<div>
             <div style="margin-bottom:6px;">指番号：<span style="display:inline-block;vertical-align:middle;">${renderFingering(noteObj.fingering, state.instrument)}</span></div>
-            <div>記譜音：${toJapaneseNoteName(noteObj.note)}</div>
-            <div>実音：${noteObj.real}</div>
+            <div style="display:flex;justify-content:center;gap:1.5em;align-items:center;">
+                <span>記譜音：${toJapaneseNoteName(noteObj.note)}</span>
+                <span>実音：${noteObj.real}</span>
+            </div>
         </div>`;
     }
     app.innerHTML = `
@@ -277,13 +279,15 @@ function renderQuestion() {
         <div class="center" style="min-height:2em;">
             ${answerHtml}
         </div>
-        <button class="action-btn" onclick="nextQuestion()">次へ</button>
-        <button class="action-btn" onclick="endSession()">終わり</button>
-        <div class="center" style="margin-top:16px;">
-            <button class="action-btn" onclick="toggleAutoMode()">
-                オートモード: ${state.autoMode ? 'ON' : 'OFF'}
-            </button>
-        </div>
+        ${state.showAnswer ? `
+            <button class="action-btn" onclick="nextQuestion()">次へ</button>
+            <button class="action-btn" onclick="endSession()">終わり</button>
+            <div class="center" style="margin-top:16px;">
+                <button class="action-btn" onclick="toggleAutoMode()">
+                    オートモード: ${state.autoMode ? 'ON' : 'OFF'}
+                </button>
+            </div>
+        ` : ''}
     `;
 }
 // ...existing code...
