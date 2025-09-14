@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# node
+node_modules/
+
+# VSCode
+.vscode/
+
+# 画像や音声など大容量ファイルは必要に応じて
+assets/*.mp3
+assets/*.wav
