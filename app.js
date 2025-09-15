@@ -263,11 +263,18 @@ function renderQuestion() {
     const imgSrc = `assets/${state.instrument}_${getNoteFileName(noteObj.note)}.png`;
     let answerHtml = '';
     if (state.showAnswer) {
+        // 記譜音・実音の音名部分だけ大きめ太字、オクターブは通常
+        const noteMatch = noteObj.note.match(/^([A-G][b#]?)(\d)$/);
+        const realMatch = noteObj.real.match(/^([A-G][b#]?)(\d)$/);
+        const noteMain = noteMatch ? noteMatch[1] : noteObj.note;
+        const noteOct = noteMatch ? noteMatch[2] : '';
+        const realMain = realMatch ? realMatch[1] : noteObj.real;
+        const realOct = realMatch ? realMatch[2] : '';
         answerHtml = `<div>
-            <div style="margin-bottom:6px;">指番号：<span style="display:inline-block;vertical-align:middle;">${renderFingering(noteObj.fingering, state.instrument)}</span></div>
-            <div style="display:flex;justify-content:center;gap:1.5em;align-items:center;">
-                <span>記譜音：${toJapaneseNoteName(noteObj.note)}</span>
-                <span>実音：${noteObj.real}</span>
+            <div style=\"margin-bottom:6px;\">指番号：<span style=\"display:inline-block;vertical-align:middle;\">${renderFingering(noteObj.fingering, state.instrument)}</span></div>
+            <div style=\"display:flex;justify-content:center;gap:1.5em;align-items:center;\">
+                <span>記譜音：<span style='font-size:1.3em;font-weight:bold;'>${toJapaneseNoteName(noteMain + noteOct).slice(0, -1)}</span><span style='font-size:1em;font-weight:normal;'>${noteOct}</span></span>
+                <span>実音：<span style='font-size:1.3em;font-weight:bold;'>${realMain}</span><span style='font-size:1em;font-weight:normal;'>${realOct}</span></span>
             </div>
         </div>`;
     }
